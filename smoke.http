@@ -1,0 +1,31 @@
+### Get users
+GET http://localhost:4111/api/v1/admin/users
+Accept: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
+
+{}
+
+### Get users
+GET http://localhost:4111/api/v1/admin/users
+Accept: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
+
+{}
+
+
+### Create user 1
+POST http://localhost:4111/api/v1/admin/users
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
+
+{
+  "username": "newuser75432",
+  "password": "verysTRongPassword33$",
+  "role": "USER"
+}
+
+### Create account
+POST http://localhost:4111/api/v1/accounts
+Accept: application/json
+Authorization:
