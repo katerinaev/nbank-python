@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from typing import List
 
 from src.main.api.models.create_account_response import CreateAccountResponse
 from src.main.api.models.create_user_request import CreateUserRequest
@@ -27,6 +28,12 @@ class Endpoint(Enum):
         response_model=None
     )
 
+    ADMIN_GET_ALL_USERS = EndpointConfig(
+        url='/admin/users',
+        request_model=None,
+        response_model=List[CreateUserRequest]
+    )
+
     LOGIN_USER = EndpointConfig(
         url='/auth/login',
         request_model=LoginUserRequest,
@@ -37,4 +44,10 @@ class Endpoint(Enum):
         url='/accounts',
         request_model=None,
         response_model=CreateAccountResponse
+    )
+
+    GET_CUSTOMER_ACCOUNTS = EndpointConfig(
+        url='/customer/accounts',
+        request_model=None,
+        response_model=List[CreateAccountResponse]
     )
