@@ -1,3 +1,5 @@
+from typing import Dict
+
 import requests, logging
 
 from src.main.api.models.login_user_request import LoginUserRequest
@@ -7,7 +9,7 @@ from src.main.api.specs.response_specs import ResponseSpecs
 
 class RequestSpecs:
     @staticmethod
-    def default_req_headers():
+    def default_req_headers() -> Dict[str, str]:
         return {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -24,7 +26,7 @@ class RequestSpecs:
         return headers
 
     @staticmethod
-    def user_auth_spec(username: str, password: str):
+    def auth_as_user(username, password):
         try:
             response: requests.Response = CrudRequester(
                 RequestSpecs.unauth_spec(),
@@ -32,7 +34,7 @@ class RequestSpecs:
                 ResponseSpecs.request_returns_ok()
             ).post(LoginUserRequest(username=username, password=password))
         except:
-            logging.error(f'Authentication failed for {username} with status {response.status_code}')
+            logging.error(f'Authentication failed for {username}')
             raise Exception('Failed to authenticate user')
         else:
             auth_header = response.headers.get('Authorization')
