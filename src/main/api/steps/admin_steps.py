@@ -1,6 +1,5 @@
 from typing import List
 
-from specs import request_specs
 from src.main.api.models.comparison.model_assertions import ModelAssertions
 from src.main.api.requests.skeleton.requesters.validated_crud_requester import ValidatedCrudRequester
 from src.main.api.models.create_user_response import CreateUserResponse
@@ -39,7 +38,7 @@ class AdminSteps(BaseSteps):
             ResponseSpecs.entity_was_deleted()
         ).delete(user_id)
 
-    def get_all_users(self) -> List[CreateUserResponse]:
+    def get_all_users(self) -> List[CreateUserRequest]:
         response = ValidatedCrudRequester(
             RequestSpecs.admin_auth_spec(),
             Endpoint.ADMIN_GET_ALL_USERS,

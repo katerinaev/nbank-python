@@ -20,7 +20,7 @@ class ComparisonResult:
 
 class ModelComparator:
     @staticmethod
-    def compare_fields(request: Any, response: Any, field_mapping:Dict[str, str]):
+    def compare_fields(request: Any, response: Any, field_mapping: Dict[str, str]):
         mismatches = []
         for request_field, response_field in field_mapping.items():
             request_value = ModelComparator._get_field_value(request, request_field)
