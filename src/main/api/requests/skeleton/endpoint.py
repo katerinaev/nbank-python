@@ -51,3 +51,9 @@ class Endpoint(Enum):
         request_model=None,
         response_model=List[CreateAccountResponse]
     )
+
+    GET_USER_PROFILE = EndpointConfig(
+        url='/customer/profile',
+        request_model=None,
+        response_model=CreateUserResponse
+    )

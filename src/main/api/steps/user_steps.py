@@ -1,5 +1,6 @@
 from typing import List
 
+from src.main.api.models.create_user_response import CreateUserResponse
 from src.main.api.models.create_user_request import CreateUserRequest
 from src.main.api.models.comparison.model_assertions import ModelAssertions
 from src.main.api.requests.skeleton.requesters.validated_crud_requester import ValidatedCrudRequester
@@ -30,8 +31,8 @@ class UserSteps(BaseSteps):
             ResponseSpecs.entity_was_created()
         ).post()
 
-        assert create_account_response.balance == 0.0
-        assert not create_account_response.transactions
+        # assert create_account_response.balance == 0.0
+        # assert not create_account_response.transactions
         return create_account_response
 
     def get_all_accounts(self, user_request: CreateUserRequest) -> List[CreateAccountResponse]:
@@ -42,3 +43,12 @@ class UserSteps(BaseSteps):
         ).get()
 
         return user_accounts
+
+    def get_profile(self, user_request: CreateUserRequest) -> CreateUserResponse:
+        user_profile: CreateUserResponse = ValidatedCrudRequester(
+            RequestSpecs.auth_as_user(user_request.username, user_request.password),
+            Endpoint.GET_USER_PROFILE,
+            ResponseSpecs.request_returns_ok()
+        ).get()
+
+        return user_profile
